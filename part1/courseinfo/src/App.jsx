@@ -11,16 +11,22 @@ const Part = (props) => {
 const Content = (props) => {
   return (
     <div>
-      <Part name={props.p1} exc={props.e1} />
-      <Part name={props.p2} exc={props.e2} />
-      <Part name={props.p3} exc={props.e3} />
-      </div>
-  )
-}
+      <Part name={props.parts[0].name} exercises={props.parts[0].exercises} />
+      <Part name={props.parts[1].name} exercises={props.parts[1].exercises} />
+      <Part name={props.parts[2].name} exercises={props.parts[2].exercises} />
+    </div>
+  );
+};
 
 const Total = (props) => {
-  return <p>Number of exercises {props.e1 + props.e2 + props.e3}</p>
-}
+  const total = 
+    props.parts[0].exercises + 
+    props.parts[1].exercises + 
+    props.parts[2].exercises;
+  
+  return <p>Number of exercises {total}</p>;
+};
+
 
 const App = () => {
   const course = {
@@ -43,10 +49,11 @@ const App = () => {
   return (
     <div>
       <Header course={course.name} />
-      <Content parts={parts} />
-      <Total parts={parts} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   )
 }
 
 export default App
+
